@@ -1,28 +1,29 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.27"
+    }
+  }
+
+  required_version = ">= 0.14.9"
+}
+
 provider "aws" {
-  region = var.region
+  profile = "default"
+  region  = "us-west-2"
 }
 
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["099720109477"] # Canonical
+resource "tls_private_key" "keypair" {
+  algorithm   = "RSA"
 }
 
-resource "aws_instance" "ubuntu" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
+resource "local_file" "privatekey" {
+    content     = tls_private_key.keypair.private_key_pem
+    filename = "key1.pem"
+}
 
-  tags = {
-    Name = var.instance_name
-  }
+resource "aws_key_pair" "deployer" {
+  key_name   = "key1.pem"
+  public_key = tls_private_key.keypair.public_key_openssh
 }
