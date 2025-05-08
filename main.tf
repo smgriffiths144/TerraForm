@@ -2,11 +2,11 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.27"
+      version = "~> 5.00"
     }
   }
 
-  required_version = ">= 0.14.9"
+  required_version = ">= 1.0.0"
 }
 
 provider "aws" {
@@ -15,12 +15,12 @@ provider "aws" {
 }
 
 resource "tls_private_key" "keypair" {
-  algorithm   = "RSA"
+  algorithm = "RSA"
 }
 
 resource "local_file" "privatekey" {
-    content     = tls_private_key.keypair.private_key_pem
-    filename = "key1.pem"
+  content  = tls_private_key.keypair.private_key_pem
+  filename = "key1.pem"
 }
 
 resource "aws_key_pair" "deployer" {

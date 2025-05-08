@@ -1,8 +1,8 @@
 
 resource "aws_security_group" "secure1" {
-  name          = "secure1"
-  vpc_id        = aws_vpc.main.id
-  description   = "Allow TLS inbound traffic"
+  name        = "secure1"
+  vpc_id      = aws_vpc.main.id
+  description = "Allow TLS inbound traffic"
   ingress {
     description = "SSH"
     from_port   = 22
@@ -35,9 +35,9 @@ resource "aws_security_group" "secure1" {
   }
 }
 resource "aws_security_group" "secure2" {
-  name          = "secure2"
-  vpc_id        = aws_vpc.main.id
-  description   = "Allow TLS inbound traffic"
+  name        = "secure2"
+  vpc_id      = aws_vpc.main.id
+  description = "Allow TLS inbound traffic"
   ingress {
     description = "SSH"
     from_port   = 22
