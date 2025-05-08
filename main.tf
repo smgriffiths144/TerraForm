@@ -11,7 +11,7 @@ terraform {
 
 provider "aws" {
   profile = "default"
-  region  = "us-west-2"
+  region  = "us-east-1"
 }
 
 resource "tls_private_key" "keypair" {
