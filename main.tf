@@ -13,7 +13,7 @@ provider "aws" {
   #profile = "default"
   region  = "us-east-1"
 }
-
+/*
 resource "tls_private_key" "keypair" {
   algorithm = "RSA"
 }
@@ -27,3 +27,4 @@ resource "aws_key_pair" "deployer" {
   key_name   = "key1.pem"
   public_key = tls_private_key.keypair.public_key_openssh
 }
+*/
