@@ -29,6 +29,10 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
+      # Runs terraform init
+      - name: Run terraform init
+        run: terraform init
+        
       # Runs terraform fmt
       - name: Run terraform fmt
         run: terraform fmt
