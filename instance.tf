@@ -8,7 +8,7 @@ resource "aws_instance" "wordpress" {
   depends_on                  = [aws_internet_gateway.intgw]
   user_data                   = file("install_wordpress.sh")
   tags = {
-    Name = "Wordpress"
+    Name = "Wordpress-v4"
     Guff = "Stuff"
   }
 }
@@ -22,6 +22,6 @@ resource "aws_instance" "mysql" {
   associate_public_ip_address = true
   user_data                   = file("install_mysql.sh")
   tags = {
-    Name = "Mysql-bv"
+    Name = "Mysql-bv-v4"
   }
 }
