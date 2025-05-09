@@ -48,7 +48,7 @@ resource "aws_subnet" "subnet1" {
   tags = {
     Name        = "subnet1"
     Terraform   = "True"
-    Environment = "dev"
+    Environment = "dev3"
   }
 }
 
