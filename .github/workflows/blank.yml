@@ -16,8 +16,8 @@ on:
 env:
   AWS_DEFAULT_REGION: us-east-1
   AWS_DEFAULT_OUTPUT: json
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   #AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -71,6 +71,10 @@ jobs:
   Run-on-MacOS:
     name: test on MacOS
     runs-on: macos-latest
+    # These permissions are needed to interact with GitHub’s OIDC Token endpoint.
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -78,6 +82,13 @@ jobs:
         run: |
             brew tap hashicorp/tap
             brew install hashicorp/tap/terraform
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: us-east-1
+          ## the following creates an ARN based on the values entered into github secrets
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_DEPLOY_ROLE }}
+          role-session-name: myGitHubActions
       - name: Test Terraform
         run: |
             terraform --version
