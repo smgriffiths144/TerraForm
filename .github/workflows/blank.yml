@@ -68,5 +68,6 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          aws s3 ls
           sudo apt install -y terraform
           terraform --version
