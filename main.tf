@@ -7,6 +7,14 @@ terraform {
   }
 
   required_version = ">= 1.0.0"
+  
+    backend "s3" {
+    bucket         = "022566422092-terraform-state-gh-test"
+    key            = "states/github-test/key"
+    region         = "us-east-1"
+    dynamodb_table = "022566422092-terraform-state-gh-test"
+    encrypt        = true
+  }
 }
 
 provider "aws" {

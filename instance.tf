@@ -22,6 +22,6 @@ resource "aws_instance" "mysql" {
   associate_public_ip_address = true
   user_data                   = file("install_mysql.sh")
   tags = {
-    Name = "Mysql-b4343434"
+    Name = "Mysql-bvvvvvvvv"
   }
 }
