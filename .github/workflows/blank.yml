@@ -53,21 +53,8 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          terraform plan
           
-  Run-PSScriptAnalyzer-on-Windows:
-    name: Run PSScriptAnalyzer on Windows
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install PSScriptAnalyzer module
-        shell: pwsh
-        run: |
-          Set-PSRepository PSGallery -InstallationPolicy Trusted
-          Install-Module PSScriptAnalyzer -ErrorAction Stop
-      - name: Get list of rules
-        shell: pwsh
-        run: |
-          Get-ScriptAnalyzerRule
   Run-on-MacOS:
     name: test on MacOS
     runs-on: macos-latest
