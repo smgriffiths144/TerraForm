@@ -86,3 +86,17 @@ jobs:
         shell: pwsh
         run: |
           Get-ScriptAnalyzerRule
+  Run-on-MacOS:
+    name: test on MacOS
+    runs-on: macos-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Install GitHub CLI
+        run: |
+          brew update
+          brew install gh
+      - name: Install Microsoft Edge
+        run: |
+          brew update
+          brew install --cask microsoft-edge
