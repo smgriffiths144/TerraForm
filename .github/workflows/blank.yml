@@ -87,3 +87,16 @@ jobs:
             terraform init
             terraform plan
             terraform apply --auto-approve
+  commitMessage:
+    name: test commit message
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.isSmoke.outputs.test }}
+    steps:
+      - id: isSmoke
+        if: ${{ contains(github.event.head_commit.message, 'smoke_test') }}
+        run: echo "test=true" >> $GITHUB_OUTPUT
+      
+      - id: optionalStep
+        if: ${{ steps.isSmoke.outputs.test  == 'true' }}
+        run: echo it was a smoke test
