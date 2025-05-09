@@ -74,5 +74,6 @@ jobs:
       - name: Test Terraform
         run: |
             terraform --version
+            aws sts get-caller-identity
             terraform init
             terraform plan
