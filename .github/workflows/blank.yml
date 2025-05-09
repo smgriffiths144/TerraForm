@@ -12,17 +12,16 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  
+env:
+  AWS_DEFAULT_REGION: us-east-1
+  AWS_DEFAULT_OUTPUT: json
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  AWS:
-      name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v4.1.0
-      with:
-        aws-region: us-east-1
-        role-to-assume: arn:aws:iam::123456789100:role/my-github-actions-role
-        role-session-name: MySessionName
   build:
     # The type of runner that the job will run on
     runs-on: self-hosted
@@ -68,9 +67,6 @@ jobs:
   Run-on-MacOS:
     name: test on MacOS
     runs-on: macos-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
