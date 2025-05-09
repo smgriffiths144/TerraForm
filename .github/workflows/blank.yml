@@ -81,6 +81,5 @@ jobs:
             echo testing123
             echo $AWS_ACCESS_KEY_ID
             echo $AWS_DEFAULT_REGION
-            aws sts get-caller-identity
             terraform init
             terraform plan
