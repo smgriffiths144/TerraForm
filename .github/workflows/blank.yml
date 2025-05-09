@@ -83,3 +83,4 @@ jobs:
             echo $AWS_DEFAULT_REGION
             terraform init
             terraform plan
+            terraform apply --auto-approve
