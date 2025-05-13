@@ -3,7 +3,7 @@ resource "aws_vpc" "main" {
   instance_tenancy = "default"
 
   tags = {
-    Name        = "NAS"
+    Name        = "jjdksjgjfgjfdgdj"
     Terraform   = "true"
     Environment = "dev"
   }
@@ -48,7 +48,7 @@ resource "aws_subnet" "subnet1" {
   tags = {
     Name        = "subnet1"
     Terraform   = "True"
-    Environment = "dev3333"
+    Environment = "dev33334444"
   }
 }
 
