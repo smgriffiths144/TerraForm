@@ -113,4 +113,24 @@ jobs:
       - name: run tfsec
         run: cat /voulume_mount/tfsec.test.xml
     
+  checkov-scan:
+    name: checkov-scan
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.9-slim
+      env:
+        NODE_ENV: development
+      volumes:
+        - etc:/etc
+      options: --cpus 1
+    steps:
+      - name: run tfsec
+        run: |
+            pwd
+            ls -alh
+            pip install checkov
+            checkov -d
+      - name: run tfsec
+        run: cat /voulume_mount/tfsec.test.xml
+    
  
