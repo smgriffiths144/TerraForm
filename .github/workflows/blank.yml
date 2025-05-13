@@ -100,9 +100,6 @@ jobs:
       image: aquasec/tfsec-ci
       env:
         NODE_ENV: development
-      entrypoint:
-        - '/usr/bin/env'
-        - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
       options: --cpus 1
     steps:
       - name: run tfsec
