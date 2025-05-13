@@ -101,14 +101,14 @@ jobs:
       env:
         NODE_ENV: development
       volumes:
-        - my_docker_volume:/volume_mount
+        - etc:/etc
       options: --cpus 1
     steps:
       - name: run tfsec
         run: |
             pwd
             ls -alh
-            sudo tfsec -f junit --out tfsec.test.xml
+            tfsec -f junit --out /etc/tfsec.test.xml
       - name: run tfsec
         run: cat /voulume_mount/tfsec.test.xml
     
