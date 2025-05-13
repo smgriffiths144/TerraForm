@@ -9,7 +9,7 @@ resource "aws_instance" "wordpress" {
   depends_on                  = [aws_internet_gateway.intgw]
   user_data                   = file("install_wordpress.sh")
   tags = {
-    Name = "Wordpress-v4"
+    Name = "Wordpress-v5"
     Guff = "Stuff"
   }
 }
