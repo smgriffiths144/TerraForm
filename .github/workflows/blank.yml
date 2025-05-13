@@ -105,6 +105,8 @@ jobs:
       options: --cpus 1
     steps:
       - name: run tfsec
-        run: tfsec -f junit # --out tfsec.test.xml
+        run: tfsec -f junit --out /voulume_mount/tfsec.test.xml
+      - name: run tfsec
+        run: cat /voulume_mount/tfsec.test.xml
     
  
