@@ -100,9 +100,11 @@ jobs:
       image: aquasec/tfsec-ci
       env:
         NODE_ENV: development
+      volumes:
+        - my_docker_volume:/volume_mount
       options: --cpus 1
     steps:
       - name: run tfsec
-        run: tfsec -f junit --out tfsec.test.xml
+        run: tfsec -f junit # --out tfsec.test.xml
     
  
