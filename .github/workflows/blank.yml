@@ -32,20 +32,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
       # Runs terraform init
       - name: Run terraform init
         if: always()
         run: terraform init
-        
-      # Runs terraform apply
-      - name: Run terraform apply
-        if: always()
-        #run: terraform apply --auto-approve
-        run: echo moving to GH hosted MacOS runner
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
@@ -93,3 +83,21 @@ jobs:
       - id: isSmoke
         if: ${{ contains(github.event.head_commit.message, 'smoke_test') }}
         run: echo "test=true"
+  
+  run-in-a-container:
+    name: test container
+    runs-on: ubuntu-latest
+    container:
+      image: node:18
+      env:
+        NODE_ENV: development
+      ports:
+        - 80
+      volumes:
+        - my_docker_volume:/volume_mount
+      options: --cpus 1
+    steps:
+      - name: Check for dockerenv file
+        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
+    
+ 
