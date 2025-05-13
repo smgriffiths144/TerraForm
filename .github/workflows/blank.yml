@@ -92,45 +92,5 @@ jobs:
     steps:
       - name: Check for dockerenv file
         run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
-        
-  tfsec-scan:
-    name: tfsec-scan
-    runs-on: ubuntu-latest
-    container:
-      image: aquasec/tfsec-ci
-      env:
-        NODE_ENV: development
-      volumes:
-        - etc:/etc
-      options: --cpus 1
-    steps:
-      - name: run tfsec
-        run: |
-            pwd
-            ls -alh
-            sudo chmod 777 /etc/
-            tfsec -f junit --out /etc/tfsec.test.xml
-      - name: run tfsec
-        run: cat /voulume_mount/tfsec.test.xml
-    
-  checkov-scan:
-    name: checkov-scan
-    runs-on: ubuntu-latest
-    container:
-      image: python:3.9-slim
-      env:
-        NODE_ENV: development
-      volumes:
-        - etc:/etc
-      options: --cpus 1
-    steps:
-      - name: run tfsec
-        run: |
-            pwd
-            ls -alh
-            pip install checkov
-            checkov -d
-      - name: run tfsec
-        run: cat /voulume_mount/tfsec.test.xml
     
  
