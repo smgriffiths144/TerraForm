@@ -76,13 +76,6 @@ jobs:
             terraform init
             terraform plan
             terraform apply --auto-approve
-  commitMessage:
-    name: test commit message
-    runs-on: ubuntu-latest
-    steps:
-      - id: isSmoke
-        if: ${{ contains(github.event.head_commit.message, 'smoke_test') }}
-        run: echo "test=true"
   
   run-in-a-container:
     name: test container
@@ -99,5 +92,20 @@ jobs:
     steps:
       - name: Check for dockerenv file
         run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
+        
+  tfsec-scan:
+    name: tfsec-scan
+    runs-on: ubuntu-latest
+    container:
+      image: aquasec/tfsec-ci
+      env:
+        NODE_ENV: development
+      entrypoint:
+        - '/usr/bin/env'
+        - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+      options: --cpus 1
+    steps:
+      - name: run tfsec
+        run: tfsec -f junit --out tfsec.test.xml
     
  
