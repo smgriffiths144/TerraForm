@@ -108,6 +108,7 @@ jobs:
         run: |
             pwd
             ls -alh
+            sudo chmod 777 /etc/
             tfsec -f junit --out /etc/tfsec.test.xml
       - name: run tfsec
         run: cat /voulume_mount/tfsec.test.xml
