@@ -1,4 +1,4 @@
-name: `Print Terraform Version
+name: Print Terraform Version
 
 on: [push]
 
