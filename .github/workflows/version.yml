@@ -11,8 +11,6 @@ jobs:
       - name: Test terraform-version
         uses: dflook/terraform-version@v1
         id: terraform-version
-        with:
-          path: my-configuration
 
       - name: Print the version
         run: echo "The version was ${{ steps.terraform-version.outputs.terraform }}"
