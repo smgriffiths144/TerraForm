@@ -1,3 +1,5 @@
+name: `Print Terraform Version
+
 on: [push]
 
 jobs:
