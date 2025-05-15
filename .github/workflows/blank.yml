@@ -73,10 +73,7 @@ jobs:
             terraform init
             terraform plan
             terraform apply --auto-approve
-            
-    branding:
-      icon: globe
-      color: purple
+  
   
 
     
