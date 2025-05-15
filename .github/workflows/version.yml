@@ -1,0 +1,21 @@
+on: [push]
+
+jobs:
+  required_version:
+    runs-on: ubuntu-latest
+    name: Print the required Terraform and provider versions
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test terraform-version
+        uses: dflook/terraform-version@v1
+        id: terraform-version
+        with:
+          path: my-configuration
+
+      - name: Print the version
+        run: echo "The version was ${{ steps.terraform-version.outputs.terraform }}"
+
+      - name: Print aws provider version
+        run: echo "The aws provider version was ${{ steps.terraform-version.outputs.aws }}"        
