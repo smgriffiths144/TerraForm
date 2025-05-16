@@ -14,5 +14,4 @@ jobs:
 
       - name: Check for drift
         uses: dflook/terraform-check@v1
-        with:
-          path: my-terraform-config
+        
