@@ -46,6 +46,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_account_id"></a> [account\_id](#output\_account\_id) | n/a |
 | <a name="output_secuirty_group_arn"></a> [secuirty\_group\_arn](#output\_secuirty\_group\_arn) | n/a |
 <!-- END_TF_DOCS -->
