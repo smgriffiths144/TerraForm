@@ -7,8 +7,8 @@ terraform {
   }
 
   required_version = ">= 1.0.0"
-  
-    backend "s3" {
+
+  backend "s3" {
     bucket         = "022566422092-terraform-state-gh-test"
     key            = "states/github-test/key"
     region         = "us-east-1"
@@ -19,7 +19,7 @@ terraform {
 
 provider "aws" {
   #profile = "default"
-  region  = "us-east-1"
+  region = "us-east-1"
 }
 /*
 resource "tls_private_key" "keypair" {

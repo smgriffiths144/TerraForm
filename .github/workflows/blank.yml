@@ -73,6 +73,10 @@ jobs:
             terraform init
             terraform plan
             terraform apply --auto-approve
+      - name: Document Terraform
+        run: |
+            brew install terraform-docs
+            terraform-docs markdown . --output-file README.md
   
   
 
