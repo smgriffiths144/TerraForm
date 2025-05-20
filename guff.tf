@@ -73,4 +73,3 @@ module "s3_bucket_remote_module" {
     Module = "remote"
   }
 }
-}
