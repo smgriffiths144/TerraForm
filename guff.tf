@@ -15,7 +15,7 @@ module "s3_bucket" {
 }
 
 module "sqs" {
-  source  = "terraform-aws-modules/sqs/aws"
+  source = "terraform-aws-modules/sqs/aws"
 
   name = "fifo"
 
@@ -34,7 +34,7 @@ module "website_s3_bucket" {
   tags = {
     Terraform   = "true"
     Environment = "dev"
-    Module = "true"
+    Module      = "true"
   }
 }
 
@@ -46,7 +46,7 @@ module "website_s3_bucket_v2" {
   tags = {
     Terraform   = "true"
     Environment = "production"
-    Module = "local"
+    Module      = "local"
   }
 }
 
@@ -58,21 +58,21 @@ module "website_s3_bucket_v3" {
   tags = {
     Terraform   = "true"
     Environment = "devvvvvyyyyyy"
-    Module = "local"
+    Module      = "local"
   }
 }
 
 module "s3_bucket_remote_module" {
   #source = "git@github.com:smgriffiths144/terraform-modules.git"
-  source = "git::https://github.com/smgriffiths144/terraform-modules.git"#?ref=v1.5.0"
-  
+  source = "git::https://github.com/smgriffiths144/terraform-modules.git" #?ref=v1.5.0"
+
   bucket_name = "022566422092-test-remote-module"
-  q_name = "remoteqname"
-  q2_name = "remoteq2name"
+  q_name      = "remoteqname"
+  q2_name     = "remoteq2name"
 
   tags = {
     Terraform   = "true"
     Environment = "dev"
-    Module = "remote"
+    Module      = "remote"
   }
 }
