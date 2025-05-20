@@ -45,7 +45,7 @@ module "website_s3_bucket_v2" {
 
   tags = {
     Terraform   = "true"
-    Environment = "dev"
+    Environment = "production"
     Module = "local"
   }
 }
@@ -57,8 +57,8 @@ module "website_s3_bucket_v3" {
 
   tags = {
     Terraform   = "true"
-    Environment = "dev"
-    Module = "true"
+    Environment = "devvvvvyyyyyy"
+    Module = "local"
   }
 }
 
