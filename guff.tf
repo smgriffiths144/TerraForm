@@ -46,7 +46,7 @@ module "website_s3_bucket_v2" {
   tags = {
     Terraform   = "true"
     Environment = "dev"
-    Module = "true"
+    Module = "local"
   }
 }
 
@@ -60,4 +60,17 @@ module "website_s3_bucket_v3" {
     Environment = "dev"
     Module = "true"
   }
+}
+
+module "s3_bucket_remote_module" {
+  source = "git@github.com:smgriffiths144/terraform-modules.git"
+  
+  bucket_name = "022566422092-test-remote-module"
+
+  tags = {
+    Terraform   = "true"
+    Environment = "dev"
+    Module = "remote"
+  }
+}
 }
