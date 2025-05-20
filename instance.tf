@@ -7,7 +7,16 @@ resource "aws_instance" "webserevr" {
   vpc_security_group_ids      = [aws_security_group.secure1.id]
   associate_public_ip_address = true
   depends_on                  = [aws_internet_gateway.intgw]
-  user_data                   = file("install_httpd.sh")
+  root_block_device {
+    volume_type = "gp3"
+    volume_size = 10
+  }
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_tokens                 = "required"
+    http_put_response_hop_limit = 8
+  }
+  user_data = file("install_httpd.sh")
   tags = {
     Name = "Wordpress-v6"
     Guff = "Stuff"
