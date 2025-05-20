@@ -25,3 +25,15 @@ module "sqs" {
     Environment = "dev"
   }
 }
+
+module "website_s3_bucket" {
+  source = "./modules/s3"
+
+  bucket_name = "022566422092-porthmadoggo"
+
+  tags = {
+    Terraform   = "true"
+    Environment = "dev"
+    Module = "true"
+  }
+}
