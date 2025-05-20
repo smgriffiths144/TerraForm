@@ -1,7 +1,7 @@
 
 
 module "s3_bucket" {
-  source = "terraform-aws-modules/s3-bucket/aws"
+  source  = "terraform-aws-modules/s3-bucket/aws"
   version = "4.7.0"
 
   bucket = "my-s3-bucketg022566422092"
@@ -64,18 +64,18 @@ module "website_s3_bucket_v3" {
 }
 
 module "s3_bucket_remote_module" {
-  source = "git::https://github.com/smgriffiths144/terraform-modules.git"#?ref=v1.6.0"
+  source = "git::https://github.com/smgriffiths144/terraform-modules.git" #?ref=v1.6.0"
 
-  bucket_name = "022566422092-test-remote-module"
-  q_name      = "remoteqname"
-  q2_name     = "remoteq2name"
-  name = "cwlog-test"
+  bucket_name       = "022566422092-test-remote-module"
+  q_name            = "remoteqname"
+  q2_name           = "remoteq2name"
+  name              = "cwlog-test"
   retention_in_days = "1"
 
   tags = {
     Terraform   = "true"
     Environment = "dev"
-    Module = "remote"
+    Module      = "remote"
 
   }
 }
