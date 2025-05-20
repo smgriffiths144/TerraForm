@@ -19,6 +19,8 @@
 | <a name="module_s3_bucket"></a> [s3\_bucket](#module\_s3\_bucket) | terraform-aws-modules/s3-bucket/aws | n/a |
 | <a name="module_sqs"></a> [sqs](#module\_sqs) | terraform-aws-modules/sqs/aws | n/a |
 | <a name="module_website_s3_bucket"></a> [website\_s3\_bucket](#module\_website\_s3\_bucket) | ./modules/s3 | n/a |
+| <a name="module_website_s3_bucket_v2"></a> [website\_s3\_bucket\_v2](#module\_website\_s3\_bucket\_v2) | ./modules/s3 | n/a |
+| <a name="module_website_s3_bucket_v3"></a> [website\_s3\_bucket\_v3](#module\_website\_s3\_bucket\_v3) | ./modules/s3 | n/a |
 
 ## Resources
 
