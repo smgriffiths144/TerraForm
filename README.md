@@ -18,6 +18,7 @@
 |------|--------|---------|
 | <a name="module_s3_bucket"></a> [s3\_bucket](#module\_s3\_bucket) | terraform-aws-modules/s3-bucket/aws | n/a |
 | <a name="module_sqs"></a> [sqs](#module\_sqs) | terraform-aws-modules/sqs/aws | n/a |
+| <a name="module_website_s3_bucket"></a> [website\_s3\_bucket](#module\_website\_s3\_bucket) | ./modules/s3 | n/a |
 
 ## Resources
 
@@ -49,4 +50,6 @@
 | Name | Description |
 |------|-------------|
 | <a name="output_secuirty_group_arn"></a> [secuirty\_group\_arn](#output\_secuirty\_group\_arn) | n/a |
+| <a name="output_website_bucket_arn"></a> [website\_bucket\_arn](#output\_website\_bucket\_arn) | ARN of the bucket |
+| <a name="output_website_bucket_name"></a> [website\_bucket\_name](#output\_website\_bucket\_name) | Name (id) of the bucket |
 <!-- END_TF_DOCS -->
