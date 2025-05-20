@@ -11,7 +11,7 @@ resource "aws_sqs_queue" "terraform_queue" {
   }
 }
 
-resource "aws_s3_bucket" "example2" {
+resource "aws_s3_bucket" "example1" {
   bucket = "my-tf-test-bucket-022566422092"
 
   tags = {
@@ -20,7 +20,7 @@ resource "aws_s3_bucket" "example2" {
   }
 }
 
-resource "aws_s3_bucket" "example3" {
+resource "aws_s3_bucket" "example2" {
   bucket = "my-fdgggdgdg022566422092"
 
   tags = {
@@ -29,7 +29,7 @@ resource "aws_s3_bucket" "example3" {
   }
 }
 
-resource "aws_s3_bucket" "example2" {
+resource "aws_s3_bucket" "example3" {
   bucket = "my-tf-tesvvvcvt-bucket-022566422092"
 
   tags = {
@@ -38,7 +38,7 @@ resource "aws_s3_bucket" "example2" {
   }
 }
 
-resource "aws_s3_bucket" "example3" {
+resource "aws_s3_bucket" "example4" {
   bucket = "vvvdvvdvggdgdg022566422092"
 
   tags = {
