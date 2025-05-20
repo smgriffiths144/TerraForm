@@ -28,3 +28,21 @@ resource "aws_s3_bucket" "example3" {
     Environment = "Dev"
   }
 }
+
+resource "aws_s3_bucket" "example2" {
+  bucket = "my-tf-tesvvvcvt-bucket-022566422092"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+}
+
+resource "aws_s3_bucket" "example3" {
+  bucket = "vvvdvvdvggdgdg022566422092"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+}
