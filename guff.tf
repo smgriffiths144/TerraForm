@@ -37,3 +37,27 @@ module "website_s3_bucket" {
     Module = "true"
   }
 }
+
+module "website_s3_bucket_v2" {
+  source = "./modules/s3"
+
+  bucket_name = "022566422092-porthmadoggo-v2"
+
+  tags = {
+    Terraform   = "true"
+    Environment = "dev"
+    Module = "true"
+  }
+}
+
+module "website_s3_bucket_v3" {
+  source = "./modules/s3"
+
+  bucket_name = "022566422092-porthmadoggo-v3"
+
+  tags = {
+    Terraform   = "true"
+    Environment = "dev"
+    Module = "true"
+  }
+}
