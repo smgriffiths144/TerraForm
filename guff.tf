@@ -64,9 +64,10 @@ module "website_s3_bucket_v3" {
 
 module "s3_bucket_remote_module" {
   #source = "git@github.com:smgriffiths144/terraform-modules.git"
-  source = "git::https://github.com/smgriffiths144/terraform-modules.git"
+  source = "git::https://github.com/smgriffiths144/terraform-modules.git?ref=v1.2.0"
   
   bucket_name = "022566422092-test-remote-module"
+  #q_name = "remote-module-q"
 
   tags = {
     Terraform   = "true"
