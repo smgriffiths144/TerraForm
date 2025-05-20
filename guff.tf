@@ -63,26 +63,16 @@ module "website_s3_bucket_v3" {
 }
 
 module "s3_bucket_remote_module" {
-  #source = "git@github.com:smgriffiths144/terraform-modules.git"
-<<<<<<< HEAD
   source = "git::https://github.com/smgriffiths144/terraform-modules.git?ref=v1.6.0"
-  
-=======
-  source = "git::https://github.com/smgriffiths144/terraform-modules.git" #?ref=v1.5.0"
 
->>>>>>> c13f1ad698d3e6fedbdf5106005a73c0f5190597
   bucket_name = "022566422092-test-remote-module"
   q_name      = "remoteqname"
   q2_name     = "remoteq2name"
 
   tags = {
     Terraform   = "true"
-<<<<<<< HEAD
     Environment = "dev"
     Module = "remote"
-=======
-    Environment = "dev"
-    Module      = "remote"
->>>>>>> c13f1ad698d3e6fedbdf5106005a73c0f5190597
+
   }
 }
