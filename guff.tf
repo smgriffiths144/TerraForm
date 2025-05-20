@@ -1,7 +1,7 @@
 
 
 module "s3_bucket" {
-  source = "terraform-aws-modules/s3-bucket/aws"
+  source = "terraform-aws-modules/s3-bucket/aws?ref=v4.7.0"
 
   bucket = "my-s3-bucketg022566422092"
   #acl    = "private"
