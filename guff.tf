@@ -68,6 +68,7 @@ module "s3_bucket_remote_module" {
   
   bucket_name = "022566422092-test-remote-module"
   q_name = "remoteqname"
+  q2_name = "remoteq2name"
 
   tags = {
     Terraform   = "true"
