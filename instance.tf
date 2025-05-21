@@ -1,4 +1,9 @@
-/*
+resource "aws_iam_instance_profile" "ec2_profile" {
+  name = "web-ec2-profile"
+  role = "AccountGuardian-SSMRole-DO-NOT-DELETE "
+}
+
+
 resource "aws_instance" "webserevr" {
   ami           = "ami-0f88e80871fd81e91"
   instance_type = "t3.micro"
@@ -6,6 +11,7 @@ resource "aws_instance" "webserevr" {
   #key_name                    = aws_key_pair.deployer.key_name
   vpc_security_group_ids      = [aws_security_group.secure1.id]
   associate_public_ip_address = true
+  iam_instance_profile        = aws_iam_instance_profile.ec2_profile.name
   depends_on                  = [aws_internet_gateway.intgw]
   root_block_device {
     volume_type = "gp3"
@@ -16,7 +22,7 @@ resource "aws_instance" "webserevr" {
     http_tokens                 = "required"
     http_put_response_hop_limit = 8
   }
-  #user_data = file("install_httpd.sh")
+  user_data = file("./install_httpd.sh")
   tags = {
     Name = "Wordpress-v6"
     Guff = "Stuff"
