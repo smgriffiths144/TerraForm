@@ -56,5 +56,6 @@
 
 | Name | Description |
 |------|-------------|
+| <a name="output_alb-dns-name"></a> [alb-dns-name](#output\_alb-dns-name) | n/a |
 | <a name="output_secuirty_group_arn"></a> [secuirty\_group\_arn](#output\_secuirty\_group\_arn) | n/a |
 <!-- END_TF_DOCS -->
