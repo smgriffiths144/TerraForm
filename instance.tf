@@ -1,4 +1,4 @@
-/*
+
 resource "aws_instance" "webserevr" {
   ami           = "ami-0f88e80871fd81e91"
   instance_type = "t3.micro"
@@ -16,7 +16,7 @@ resource "aws_instance" "webserevr" {
     http_tokens                 = "required"
     http_put_response_hop_limit = 8
   }
-  #user_data = file("install_httpd.sh")
+  user_data = file("install_httpd.sh")
   tags = {
     Name = "Wordpress-v6"
     Guff = "Stuff"
