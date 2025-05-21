@@ -41,6 +41,11 @@ resource "aws_lb_listener" "test" {
   }
 }
 
+resource "aws_lb_target_group_attachment" "test" {
+  target_group_arn = aws_lb_target_group.test.arn
+  target_id        = aws_instance.webserevr.id
+  port             = 80
+}
 
 resource "aws_iam_instance_profile" "ec2_profile" {
   name = "web-ec2-profile"
