@@ -1,6 +1,6 @@
 resource "aws_iam_instance_profile" "ec2_profile" {
   name = "web-ec2-profile"
-  role = "AccountGuardian-SSMRole-DO-NOT-DELETE "
+  role = "AccountGuardian-SSMRole-DO-NOT-DELETE"
 }
 
 
