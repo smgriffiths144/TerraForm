@@ -1,3 +1,26 @@
+resource "aws_s3_bucket_policy" "allow_access_from_account" {
+  bucket = module.s3_bucket_remote_module.name
+  policy = data.aws_iam_policy_document.allow_access_from_account.json
+}
+
+data "aws_iam_policy_document" "allow_access_from_account" {
+  statement {
+    principals {
+      type        = "AWS"
+      identifiers = ["arn:aws:iam::elb-022566422092:root"]
+    }
+
+    actions = [
+      "s3:PutObject",
+      "s3:ListBucket",
+    ]
+
+    resources = [
+      module.s3_bucket_remote_module.arn,
+      "${module.s3_bucket_remote_module.arn}/*",
+    ]
+  }
+}
 
 
 
