@@ -13,7 +13,7 @@ module "website_s3_bucket_v3" {
 module "s3_bucket_remote_module" {
   source = "git::https://github.com/smgriffiths144/terraform-modules.git" #?ref=v1.6.0"
 
-  bucket_name = "022566422092-test-remote-module"
+  bucket_name = "022566422092-alb-access-logs"
   q_name      = "remoteqname"
   #q2_name           = "remoteq2nam"
   #name              = "cwlog-test"
