@@ -8,6 +8,7 @@ data "aws_iam_policy_document" "allow_access_from_account" {
     principals {
       type        = "AWS"
       identifiers = ["arn:aws:iam::elb-022566422092:root"]
+      #identifiers = ["arn:aws:iam::elb-022566422092:root"]
     }
 
     actions = [
@@ -33,14 +34,14 @@ resource "aws_lb" "test" {
   #subnets            = [for subnet in aws_subnet.public : subnet.id]
 
   #enable_deletion_protection = true
-
+  /*
   access_logs {
     #bucket  = aws_s3_bucket.lb_logs.id
     bucket  = module.s3_bucket_remote_module.name
     prefix  = "test-lb"
     enabled = true
   }
-
+*/
   tags = {
     Environment = "production"
     Terraform   = "true"
