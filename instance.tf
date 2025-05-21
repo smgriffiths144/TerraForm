@@ -13,7 +13,7 @@ resource "aws_lb" "test" {
 
   access_logs {
     #bucket  = aws_s3_bucket.lb_logs.id
-    bucket  = "s3_bucket_remote_module.name"
+    bucket  = module.s3_bucket_remote_module.name
     prefix  = "test-lb"
     enabled = true
   }
