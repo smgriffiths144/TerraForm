@@ -17,6 +17,7 @@
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_s3_bucket_remote_module"></a> [s3\_bucket\_remote\_module](#module\_s3\_bucket\_remote\_module) | git::https://github.com/smgriffiths144/terraform-modules.git | n/a |
+| <a name="module_website_s3_bucket_new_stuff"></a> [website\_s3\_bucket\_new\_stuff](#module\_website\_s3\_bucket\_new\_stuff) | ./modules/s3 | n/a |
 | <a name="module_website_s3_bucket_v3"></a> [website\_s3\_bucket\_v3](#module\_website\_s3\_bucket\_v3) | ./modules/s3 | n/a |
 
 ## Resources
