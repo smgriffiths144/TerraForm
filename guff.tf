@@ -26,3 +26,15 @@ module "s3_bucket_remote_module" {
 
   }
 }
+
+module "website_s3_bucket_new_stuff" {
+  source = "./modules/s3"
+
+  bucket_name = "022566422092-new-stuff"
+
+  tags = {
+    Terraform   = "true"
+    Environment = "devvvvvyyyyyyvvv"
+    Module      = "local"
+  }
+}
