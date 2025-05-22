@@ -38,10 +38,6 @@ scrape_configs:
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']
-  — job_name: ‘node_exporter’
-    scrape_interval: 5s
-    static_configs:
-       — targets: [‘10.24.2.111:9100’]
 EOF
 
 systemctl daemon-reload
