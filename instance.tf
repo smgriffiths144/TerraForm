@@ -28,14 +28,14 @@ data "aws_iam_policy_document" "allow_access_from_account" {
 #trivy:ignore:AVD-AWS-0052 <- HERE
 #trivy:ignore:AVD-AWS-0053 <- HERE
 resource "aws_lb" "test" {
-  name               = "test-lb-tf"
-  internal           = false
-  load_balancer_type = "application"
+  name                       = "test-lb-tf"
+  internal                   = false
+  load_balancer_type         = "application"
   drop_invalid_header_fields = true
-  security_groups    = [aws_security_group.secure1.id]
-  subnets            = [aws_subnet.subnet1.id, aws_subnet.subnet3.id]
+  security_groups            = [aws_security_group.secure1.id]
+  subnets                    = [aws_subnet.subnet1.id, aws_subnet.subnet3.id]
   xff_header_processing_mode = "preserve"
-/*
+  /*
   access_logs {
     #bucket  = aws_s3_bucket.lb_logs.id
     bucket  = module.s3_bucket_remote_module.name
@@ -91,7 +91,7 @@ resource "aws_instance" "webserevr" {
   root_block_device {
     volume_type = "gp3"
     volume_size = 10
-    encrypted = true
+    encrypted   = true
   }
   metadata_options {
     http_endpoint               = "enabled"

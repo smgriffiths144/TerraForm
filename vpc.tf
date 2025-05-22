@@ -4,7 +4,7 @@ resource "aws_vpc" "main" {
 
   tags = {
     Name        = "jjdksjgjfgjfdgdj"
-    Terraform   = "truehhhhh"
+    Terraform   = "true"
     Environment = "dev"
   }
 }

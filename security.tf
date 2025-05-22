@@ -40,7 +40,7 @@ resource "aws_security_group" "secure2" {
     protocol    = "tcp"
     cidr_blocks = ["82.39.120.159/32"]
   }
-#trivy:ignore:aws-vpc-no-public-egress-sgr <- HERE
+  #trivy:ignore:aws-vpc-no-public-egress-sgr <- HERE
   egress {
     description = "outound"
     from_port   = 0
