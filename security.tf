@@ -26,14 +26,14 @@ resource "aws_security_group" "secure2" {
   description = "secuirty group for the web server"
   ingress {
     description = "SSH"
-    from_port   = 22
-    to_port     = 22
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
     #cidr_blocks = [aws_subnet.subnet1.cidr_block]
-    cidr_blocks = ["82.39.120.159/32"]
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }
   ingress {
-    description = "MYSQL"
+    description = "HTTP"
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
