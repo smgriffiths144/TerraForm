@@ -99,7 +99,7 @@ resource "aws_instance" "webserevr" {
   }
   user_data = file("./install_httpd.sh")
   tags = {
-    Name = "web server"
+    Name = "web edit in dentist"
     Guff = "Stuff"
   }
 }
