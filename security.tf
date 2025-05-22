@@ -26,11 +26,10 @@ resource "aws_security_group" "secure2" {
   vpc_id      = aws_vpc.main.id
   description = "secuirty group for the web server"
   ingress {
-    description = "HTTP"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    #cidr_blocks = [aws_subnet.subnet1.cidr_block]
+    description = "local"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = [aws_vpc.main.cidr_block]
   }
   ingress {
@@ -38,6 +37,13 @@ resource "aws_security_group" "secure2" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
+    cidr_blocks = ["82.39.120.159/32"]
+  }
+  ingress {
+    description = "from my IP"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["82.39.120.159/32"]
   }
   #trivy:ignore:aws-vpc-no-public-egress-sgr <- HERE
