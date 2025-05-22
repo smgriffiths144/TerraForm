@@ -28,6 +28,22 @@ ExecStart=/opt/prometheus/prometheus \
 WantedBy=multi-user.target
 EOF
 
+cd /opt/prometheus/
+cat > prometheus.yml <<- "EOF"
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+  — job_name: ‘node_exporter’
+    scrape_interval: 5s
+    static_configs:
+       — targets: [‘10.24.2.111:9100’]
+EOF
+
 systemctl daemon-reload
 systemctl start prometheus.service 
 systemctl enable prometheus.service 

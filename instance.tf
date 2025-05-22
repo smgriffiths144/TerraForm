@@ -80,7 +80,7 @@ resource "aws_iam_instance_profile" "ec2_profile" {
 
 resource "aws_instance" "webserevr" {
   ami           = "ami-0f88e80871fd81e91"
-  instance_type = "t3.micro"
+  instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnet2.id
   #key_name                    = aws_key_pair.deployer.key_name
   vpc_security_group_ids      = [aws_security_group.secure2.id]
@@ -106,7 +106,7 @@ resource "aws_instance" "webserevr" {
 
 resource "aws_instance" "promgraf" {
   ami           = "ami-0f88e80871fd81e91"
-  instance_type = "t3.small"
+  instance_type = "t2.small"
   subnet_id     = aws_subnet.subnet2.id
   #key_name                    = aws_key_pair.deployer.key_name
   vpc_security_group_ids      = [aws_security_group.secure2.id]
