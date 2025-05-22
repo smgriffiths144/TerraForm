@@ -25,7 +25,7 @@ resource "aws_security_group" "secure2" {
   vpc_id      = aws_vpc.main.id
   description = "secuirty group for the web server"
   ingress {
-    description = "SSH"
+    description = "HTTP"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
@@ -34,10 +34,10 @@ resource "aws_security_group" "secure2" {
   }
   ingress {
     description = "HTTP"
-    from_port   = 3306
-    to_port     = 3306
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = [aws_subnet.subnet1.cidr_block]
+    cidr_blocks = ["82.39.120.159/32"]
   }
 
   egress {
