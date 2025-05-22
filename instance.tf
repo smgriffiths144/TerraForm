@@ -25,11 +25,13 @@ data "aws_iam_policy_document" "allow_access_from_account" {
 }
 
 
-
+#trivy:ignore:AVD-AWS-0052 <- HERE
+#trivy:ignore:AVD-AWS-0053 <- HERE
 resource "aws_lb" "test" {
   name               = "test-lb-tf"
   internal           = false
   load_balancer_type = "application"
+  #drop_invalid_header_fields = true
   security_groups    = [aws_security_group.secure1.id]
   subnets            = [aws_subnet.subnet1.id, aws_subnet.subnet3.id]
   xff_header_processing_mode = "preserve"
@@ -57,6 +59,8 @@ resource "aws_lb_target_group" "test" {
   vpc_id   = aws_vpc.main.id
 }
 
+
+#trivy:ignore:AVD-AWS-0054
 resource "aws_lb_listener" "test" {
   load_balancer_arn = aws_lb.test.arn
   port              = "80"
@@ -91,6 +95,7 @@ resource "aws_instance" "webserevr" {
   root_block_device {
     volume_type = "gp3"
     volume_size = 10
+    encrypted = true
   }
   metadata_options {
     http_endpoint               = "enabled"

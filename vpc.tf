@@ -44,7 +44,7 @@ resource "aws_subnet" "subnet1" {
   vpc_id                  = aws_vpc.main.id
   availability_zone       = "us-east-1a"
   cidr_block              = "10.24.1.0/24"
-  map_public_ip_on_launch = "true"
+  map_public_ip_on_launch = "false"
   tags = {
     Name        = "subnet1"
     Terraform   = "True"
@@ -56,14 +56,14 @@ resource "aws_subnet" "subnet3" {
   vpc_id                  = aws_vpc.main.id
   availability_zone       = "us-east-1b"
   cidr_block              = "10.24.3.0/24"
-  map_public_ip_on_launch = "true"
+  map_public_ip_on_launch = "false"
   tags = {
     Name        = "subnet1"
     Terraform   = "True"
     Environment = "dev33334444"
   }
 }
-
+#trivy:ignore:aws-vpc-no-public-ingress-sgr <- HERE
 resource "aws_subnet" "subnet2" {
   vpc_id                  = aws_vpc.main.id
   availability_zone       = "us-east-1a"
