@@ -32,6 +32,7 @@ resource "aws_lb" "test" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.secure1.id]
   subnets            = [aws_subnet.subnet1.id, aws_subnet.subnet3.id]
+  xff_header_processing_mode = "preserve"
   #subnets            = [for subnet in aws_subnet.public : subnet.id]
 
   #enable_deletion_protection = true
