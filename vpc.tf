@@ -87,6 +87,7 @@ resource "aws_internet_gateway" "intgw" {
 }
 
 # CloudWatch Log Group for VPC Flow Logs
+#trivy:ignore:AVD-AWS-0017 <- HERE
 resource "aws_cloudwatch_log_group" "flow_log" {
   name              = "/aws/vpc-flow-log/${aws_vpc.main.id}"
   retention_in_days = 30

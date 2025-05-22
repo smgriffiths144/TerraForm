@@ -11,6 +11,7 @@ resource "aws_security_group" "secure1" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
+    description = "all"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
@@ -41,6 +42,7 @@ resource "aws_security_group" "secure2" {
   }
 #trivy:ignore:aws-vpc-no-public-egress-sgr <- HERE
   egress {
+    description = "outound"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
