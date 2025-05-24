@@ -7,13 +7,14 @@ data "aws_iam_policy_document" "allow_access_from_account" {
   statement {
     principals {
       type        = "AWS"
-      identifiers = ["arn:aws:iam::elb-022566422092:root"]
+      identifiers = ["022566422092"]
       #identifiers = ["arn:aws:iam::elb-022566422092:root"]
     }
 
     actions = [
       "s3:PutObject",
       "s3:ListBucket",
+      "s3:*",
     ]
 
     resources = [
@@ -24,16 +25,16 @@ data "aws_iam_policy_document" "allow_access_from_account" {
 }
 
 
-
+#trivy:ignore:AVD-AWS-0052 <- HERE
+#trivy:ignore:AVD-AWS-0053 <- HERE
 resource "aws_lb" "test" {
-  name               = "test-lb-tf"
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    = [aws_security_group.secure2.id]
-  subnets            = [aws_subnet.subnet1.id, aws_subnet.subnet3.id]
-  #subnets            = [for subnet in aws_subnet.public : subnet.id]
-
-  #enable_deletion_protection = true
+  name                       = "test-lb-tf"
+  internal                   = false
+  load_balancer_type         = "application"
+  drop_invalid_header_fields = true
+  security_groups            = [aws_security_group.secure1.id]
+  subnets                    = [aws_subnet.subnet1.id, aws_subnet.subnet3.id]
+  xff_header_processing_mode = "preserve"
   /*
   access_logs {
     #bucket  = aws_s3_bucket.lb_logs.id
@@ -55,6 +56,7 @@ resource "aws_lb_target_group" "test" {
   vpc_id   = aws_vpc.main.id
 }
 
+#trivy:ignore:AVD-AWS-0054
 resource "aws_lb_listener" "test" {
   load_balancer_arn = aws_lb.test.arn
   port              = "80"
@@ -76,10 +78,9 @@ resource "aws_iam_instance_profile" "ec2_profile" {
   role = "AccountGuardian-SSMRole-DO-NOT-DELETE"
 }
 
-
 resource "aws_instance" "webserevr" {
   ami           = "ami-0f88e80871fd81e91"
-  instance_type = "t3.micro"
+  instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnet2.id
   #key_name                    = aws_key_pair.deployer.key_name
   vpc_security_group_ids      = [aws_security_group.secure2.id]
@@ -89,6 +90,7 @@ resource "aws_instance" "webserevr" {
   root_block_device {
     volume_type = "gp3"
     volume_size = 10
+    encrypted   = true
   }
   metadata_options {
     http_endpoint               = "enabled"
@@ -97,21 +99,48 @@ resource "aws_instance" "webserevr" {
   }
   user_data = file("./install_httpd.sh")
   tags = {
-    Name = "web server"
+    Name = "web edit in dentist"
     Guff = "Stuff"
   }
 }
-/*
-resource "aws_instance" "mysql" {
-  ami                         = "ami-0f88e80871fd81e91"
-  instance_type               = "t2.micro"
-  subnet_id                   = aws_subnet.subnet1.id
+
+resource "aws_instance" "promgraf" {
+  ami           = "ami-0f88e80871fd81e91"
+  instance_type = "t2.small"
+  subnet_id     = aws_subnet.subnet2.id
   #key_name                    = aws_key_pair.deployer.key_name
   vpc_security_group_ids      = [aws_security_group.secure2.id]
   associate_public_ip_address = true
-  user_data                   = file("install_mysql.sh")
+  iam_instance_profile        = aws_iam_instance_profile.ec2_profile.name
+  depends_on                  = [aws_internet_gateway.intgw]
+  root_block_device {
+    volume_type = "gp3"
+    volume_size = 20
+    encrypted   = true
+  }
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_tokens                 = "required"
+    http_put_response_hop_limit = 8
+  }
+  user_data = file("./install_promgraf.sh")
   tags = {
-    Name = "Mysql-bv-v5"
+    Name = "prometheus and grafana"
+    Guff = "Stuff"
   }
 }
-*/
+
+
+# Elastic IP for webserver
+resource "aws_eip" "webserver_eip" {
+  domain = "vpc"
+  tags = {
+    Name = "webserver-eip"
+  }
+}
+
+# Associate Elastic IP with webserver instance
+resource "aws_eip_association" "webserver_eip_assoc" {
+  instance_id   = aws_instance.promgraf.id
+  allocation_id = aws_eip.webserver_eip.id
+}

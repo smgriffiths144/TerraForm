@@ -23,14 +23,20 @@ This repo is to test protected branches and merge conflicts
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_s3_bucket_remote_module"></a> [s3\_bucket\_remote\_module](#module\_s3\_bucket\_remote\_module) | git::https://github.com/smgriffiths144/terraform-modules.git | n/a |
-| <a name="module_website_s3_bucket_new_stuff"></a> [website\_s3\_bucket\_new\_stuff](#module\_website\_s3\_bucket\_new\_stuff) | ./modules/s3 | n/a |
 | <a name="module_website_s3_bucket_v3"></a> [website\_s3\_bucket\_v3](#module\_website\_s3\_bucket\_v3) | ./modules/s3 | n/a |
 
 ## Resources
 
 | Name | Type |
 |------|------|
+| [aws_cloudwatch_log_group.flow_log](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
+| [aws_eip.webserver_eip](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eip) | resource |
+| [aws_eip_association.webserver_eip_assoc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eip_association) | resource |
+| [aws_flow_log.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/flow_log) | resource |
 | [aws_iam_instance_profile.ec2_profile](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_instance_profile) | resource |
+| [aws_iam_role.vpc_flow_log_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+| [aws_iam_role_policy.vpc_flow_log_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
+| [aws_instance.promgraf](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) | resource |
 | [aws_instance.webserevr](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) | resource |
 | [aws_internet_gateway.intgw](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/internet_gateway) | resource |
 | [aws_lb.test](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb) | resource |

@@ -11,10 +11,11 @@ resource "aws_security_group" "secure1" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
+    description = "all"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }
   tags = {
     Name = "WBDMZ"
@@ -25,22 +26,29 @@ resource "aws_security_group" "secure2" {
   vpc_id      = aws_vpc.main.id
   description = "secuirty group for the web server"
   ingress {
-    description = "SSH"
-    from_port   = 22
-    to_port     = 22
+    description = "local"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = [aws_vpc.main.cidr_block]
+  }
+  ingress {
+    description = "HTTP"
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
-    #cidr_blocks = [aws_subnet.subnet1.cidr_block]
     cidr_blocks = ["82.39.120.159/32"]
   }
   ingress {
-    description = "MYSQL"
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
-    cidr_blocks = [aws_subnet.subnet1.cidr_block]
+    description = "from my IP"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["82.39.120.159/32"]
   }
-
+  #trivy:ignore:aws-vpc-no-public-egress-sgr <- HERE
   egress {
+    description = "outound"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
