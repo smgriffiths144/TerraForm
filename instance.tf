@@ -130,7 +130,6 @@ resource "aws_instance" "promgraf" {
   }
 }
 
-
 # Elastic IP for webserver
 resource "aws_eip" "webserver_eip" {
   domain = "vpc"
