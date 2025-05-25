@@ -26,9 +26,9 @@ module "s3_bucket_remote_module" {
   #retention_in_days = "1"
 
   tags = {
-    Terraform   = "truevvvv"
-    Environment = "devvvvv"
-    Module      = "remotevvvv"
+    Terraform   = "true"
+    Environment = "dev"
+    Module      = "remote"
 
   }
 }
