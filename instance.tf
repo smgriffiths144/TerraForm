@@ -90,7 +90,7 @@ resource "aws_instance" "webserevr" {
   depends_on                  = [aws_internet_gateway.intgw]
   root_block_device {
     volume_type = "gp3"
-    volume_size = 8
+    volume_size = 10
     encrypted   = true
   }
   metadata_options {
