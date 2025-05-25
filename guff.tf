@@ -8,7 +8,7 @@ module "website_s3_bucket_v3" {
 
   tags = {
     Terraform   = "true"
-    Environment = "dev"
+    Environment = "devww"
     Module      = "local"
   }
 }
