@@ -28,7 +28,7 @@ data "aws_iam_policy_document" "allow_access_from_account" {
 #trivy:ignore:AVD-AWS-0052 <- HERE
 #trivy:ignore:AVD-AWS-0053 <- HERE
 resource "aws_lb" "test" {
-  name                       = "test-lb-tf"
+  name                       = "test-lb-tf-v2"
   internal                   = false
   load_balancer_type         = "application"
   drop_invalid_header_fields = true
@@ -46,6 +46,7 @@ resource "aws_lb" "test" {
   tags = {
     Environment = "production"
     Terraform   = "true"
+    Guff        = "stuff"
   }
 }
 
@@ -89,7 +90,7 @@ resource "aws_instance" "webserevr" {
   depends_on                  = [aws_internet_gateway.intgw]
   root_block_device {
     volume_type = "gp3"
-    volume_size = 10
+    volume_size = 8
     encrypted   = true
   }
   metadata_options {
@@ -109,7 +110,7 @@ resource "aws_instance" "webserevr" {
 
 resource "aws_instance" "promgraf" {
   ami           = "ami-0f88e80871fd81e91"
-  instance_type = "t2.small"
+  instance_type = "t3.small"
   subnet_id     = aws_subnet.subnet2.id
   #key_name                    = aws_key_pair.deployer.key_name
   vpc_security_group_ids      = [aws_security_group.secure2.id]
@@ -117,8 +118,8 @@ resource "aws_instance" "promgraf" {
   iam_instance_profile        = aws_iam_instance_profile.ec2_profile.name
   depends_on                  = [aws_internet_gateway.intgw]
   root_block_device {
-    volume_type = "gp3"
-    volume_size = 20
+    volume_type = "gp2"
+    volume_size = 30
     encrypted   = true
   }
   metadata_options {
@@ -130,6 +131,7 @@ resource "aws_instance" "promgraf" {
   tags = {
     Name = "prometheus and grafana"
     Guff = "Stuff"
+    Butt = "Ruff"
   }
 }
 
